@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #4CAF50;
+            padding: 14px 16px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            color: rgb(255, 0, 0);
+        }
+
+        .book-image {
+            max-width: 100%;
+            height: 100%;
+            height: 50%;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 20px;
+        }
+        
+       table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }  
+        
+        
+        
+    </style>
+</head>
+<body>
+    
+        <h1 style="text-align: center; color: red;" ><b>सोहम बूक सेंटर </b></h1>
+    
+
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="avialbe_book">Avialbe book</a>
+        <a href="#">mybook</a>
+        <a href="book_register">new book Registration</a>
+    </div>
+
+	
+	
+  
+   
+  
+<h2 style="text-align: center;"> Avialable Book in Store</h2>
+<div class="container my-5 col-md-6">
+<table class="table table-dark table-striped">
+  
+ <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Author</th>
+    <th>Price</th>
+    <th>Action</th>
+ </tr> 
+  
+  
+ <tr th:each="b :${book}">
+  
+    <td th:text="${b.id}" ></td>
+    <td th:text="${b.name}" ></td>
+    <td th:text="${b.author}"></td>
+    <td th:text="${b.price}"></td>
+    <td> <button type="button" onclick="buttonClick()" th:href="@{/mylist/{id}{id=${b.id}}}">Add To My Book</button>
+</td>
+ </tr> 
+
+</table>
+</div>
+   
+</body>
+</html>
