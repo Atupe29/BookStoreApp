@@ -20,9 +20,9 @@ import com.jdc04.service.MybookListService;
 public class BookController {
 	@Autowired
 	private BookService service;
-@Autowired
-private MybookListService mybookService;
-	
+	@Autowired
+	private MybookListService mybookService;
+
 	@GetMapping("/")
 	public String home() {
 		return "home";
@@ -37,9 +37,9 @@ private MybookListService mybookService;
 	public ModelAndView getAllBook() {
 		List<Book> list = service.getAllBook();
 
-	//	ModelAndView m = new ModelAndView();
-		//m.setViewName("bookList");
-		//m.addObject("book", list);
+		// ModelAndView m = new ModelAndView();
+		// m.setViewName("bookList");
+		// m.addObject("book", list);
 		return new ModelAndView("bookList", "book", list);
 	}
 
@@ -49,20 +49,19 @@ private MybookListService mybookService;
 
 		return "redirect:/avialbe_book";
 	}
-	
+
 	@GetMapping("/my_Book")
 	public String getMyBooks() {
-		
+
 		return "myBook";
 	}
-	
+
 	@RequestMapping("/mylist/{id}")
 	public String getMyList(@PathVariable("id") int id) {
-		Book b=service.getBookId(id);
-		MyBookList mb=new MyBookList(b.getId(),b.getName(),b.getAuthor(),b.getPrice());
+		Book b = service.getBookId(id);
+		MyBookList mb = new MyBookList(b.getId(), b.getName(), b.getAuthor(), b.getPrice());
 		mybookService.saveMyBooks(mb);
-		
-		
+
 		return "redirect:/my_Book";
 	}
 }
